@@ -16,6 +16,7 @@ public class MenuServicio {
         Scanner leer = new Scanner(System.in).useDelimiter("\n");
         AutorServicio as = new AutorServicio();
         EditorialServicio es = new EditorialServicio();
+        LibroServicio ls = new LibroServicio();
     int r = 0;
         do{
         System.out.println("Elija una opción del menú");
@@ -38,23 +39,23 @@ public class MenuServicio {
                 es.crearModificarElimnar();
                 break;
             case 3:
-                
+                ls.crearModificarElimnar();
                 break;
             case 4:
                 as.buscarAutorPorNombre();
                 
                 break;
             case 5:
-              
+                ls.buscarLibroPorISBN();
                 break;
             case 6:
-           
+                ls.buscarLibroPorTitulo();
                 break;  
             case 7:
-              
+                ls.buscarLibrosPorNombreAutor();
                 break;
             case 8:
-             
+                ls.buscarLibrosPorNombreEditorial();
                 break;   
         }
                 

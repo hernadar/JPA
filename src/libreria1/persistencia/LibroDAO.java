@@ -5,6 +5,7 @@
  */
 package libreria1.persistencia;
 
+import java.util.List;
 import libreria1.entidades.Libro;
 
 /**
@@ -12,28 +13,28 @@ import libreria1.entidades.Libro;
  * @author dario
  */
 public class LibroDAO extends DAO{
-         public void crearEditorial(Libro a){
+         public void crearLibro(Libro a){
        super.guardarDatos(a);
     }
-    public void modificarEditorial(Libro a){
+    public void modificarLibro(Libro a){
         super.modificarDatos(a);
     }
     public void eliminarEditorial(Libro a){
        super.eliminarDatos(a);
     }
-    public Editorial buscarEditorial(int id){
+    public Libro buscarLibro(long id){
         System.out.println(id);
-        Editorial editorial = em.find(Editorial.class, id);
-        System.out.println(editorial);
-    return editorial;
+        Libro libro = em.find(Libro.class, id);
+        System.out.println(libro);
+    return libro;
     }
-    public void listarEditoriales(){
+    public void listarLibros(){
         try {
             conectar();
-            List<Editorial> editoriales = em.createQuery("SELECT a FROM Editorial a").getResultList();
-            System.out.println("Lista de Editoriales");
-            for (Editorial editorial : editoriales) {
-                System.out.println(editorial.getId() + " - " + editorial.getNombre() + " - " + editorial.isAlta());
+            List<Libro> libros = em.createQuery("SELECT a FROM Libro a").getResultList();
+            System.out.println("Lista de Libros");
+            for (Libro libro : libros) {
+                System.out.println(libro.getIsbn() + " - " + libro.getTitulo() + " - " + libro.isAlta());
             
             }
     } catch(Exception e){
@@ -42,13 +43,43 @@ public class LibroDAO extends DAO{
             //desconectar();
         }
     }
-    public void buscarEditorialPorNombre(String nombre){
+    public void buscarLibroPorTitulo(String titulo){
         try {
             conectar();
-            List<Editorial> editoriales = em.createQuery("SELECT a FROM Editorial a WHERE a.nombre LIKE :nombre").setParameter("nombre", nombre).getResultList() ;
-            System.out.println("Lista de Editoriales");
-            for (Editorial editorial : editoriales) {
-                System.out.println(editorial.getId() + " - " + editorial.getNombre() + " - " + editorial.isAlta());
+            List<Libro> libros = em.createQuery("SELECT a FROM Libro a WHERE a.titulo LIKE :titulo").setParameter("titulo", titulo).getResultList() ;
+            System.out.println("Lista de Libros");
+            for (Libro libro : libros) {
+                System.out.println(libro.getIsbn() + " - " + libro.getTitulo() + " - " + libro.isAlta());
+            
+            }
+    } catch(Exception e){
+        throw e;
+    } finally {
+            //desconectar();
+        }
+    }
+    public void buscarLibrosPorNombreAutor(String nombre){
+        try {
+            conectar();
+            List<Libro> libros = em.createQuery("SELECT a FROM Libro a JOIN Autor WHERE a.autor.nombre LIKE :nombre").setParameter("nombre", nombre).getResultList() ;
+            System.out.println("Lista de Libros");
+            for (Libro libro : libros) {
+                System.out.println(libro.getIsbn() + " - " + libro.getTitulo() + " - " + libro.isAlta());
+            
+            }
+    } catch(Exception e){
+        throw e;
+    } finally {
+            //desconectar();
+        }
+    }
+     public void buscarLibrosPorNombreEditorial(String nombre){
+        try {
+            conectar();
+            List<Libro> libros = em.createQuery("SELECT a FROM Libro a JOIN Editorial WHERE a.autor.nombre LIKE :nombre").setParameter("nombre", nombre).getResultList() ;
+            System.out.println("Lista de Libros");
+            for (Libro libro : libros) {
+                System.out.println(libro.getIsbn() + " - " + libro.getTitulo() + " - " + libro.isAlta());
             
             }
     } catch(Exception e){
