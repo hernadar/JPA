@@ -48,9 +48,13 @@ public class EditorialDAO extends DAO {
             conectar();
             List<Editorial> editoriales = em.createQuery("SELECT a FROM Editorial a WHERE a.nombre LIKE :nombre").setParameter("nombre", nombre).getResultList() ;
             System.out.println("Lista de Editoriales");
+            if (editoriales.isEmpty()){
+                System.out.println("La Editorial buscada no existe");
+            } else {
             for (Editorial editorial : editoriales) {
                 System.out.println(editorial.getId() + " - " + editorial.getNombre() + " - " + editorial.isAlta());
             
+            }
             }
     } catch(Exception e){
         throw e;

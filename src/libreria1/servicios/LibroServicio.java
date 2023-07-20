@@ -6,7 +6,11 @@
 package libreria1.servicios;
 
 import java.util.Scanner;
+import libreria1.entidades.Autor;
+import libreria1.entidades.Editorial;
 import libreria1.entidades.Libro;
+import libreria1.persistencia.AutorDAO;
+import libreria1.persistencia.EditorialDAO;
 import libreria1.persistencia.LibroDAO;
 
 /**
@@ -16,6 +20,8 @@ import libreria1.persistencia.LibroDAO;
 public class LibroServicio {
        Scanner leer = new Scanner(System.in).useDelimiter("\n");
        LibroDAO ldao = new LibroDAO();
+       EditorialDAO edao= new EditorialDAO(); 
+       AutorDAO adao= new AutorDAO(); 
     public void crearModificarElimnar(){
     int r = 0;
         do{
@@ -57,6 +63,17 @@ public class LibroServicio {
         libro.setTitulo(leer.next());
         System.out.println("Ingrese el año del Libro");
         libro.setAnio(leer.nextInt());
+        System.out.println("Selecione una el id de un Autor");
+        adao.listarAutores();
+        int idA= leer.nextInt();
+        Autor autor=adao.buscarAutor(idA);
+        libro.setAutor(autor);
+        System.out.println("Selecione una el id de una Editorial");
+        edao.listarEditoriales();
+        int idE = leer.nextInt();
+        edao.buscarEditorial(idE);
+        Editorial editorial = edao.buscarEditorial(idE);
+        libro.setEditorial(editorial);
         System.out.println("Ingrese la cantidad de ejemplares del Libro");
         libro.setEjemplares(leer.nextInt());
         System.out.println("Ingrese la cantidad de ejemplares prestados del Libro");

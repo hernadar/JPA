@@ -49,9 +49,13 @@ public class AutorDAO extends DAO{
             conectar();
             List<Autor> autores = em.createQuery("SELECT a FROM Autor a WHERE a.nombre LIKE :nombre").setParameter("nombre", nombre).getResultList() ;
             System.out.println("Lista de Autores");
+            if (autores.isEmpty()) {
+                System.out.println("El Autor buscado no existe");
+            } else{
             for (Autor autor : autores) {
                 System.out.println(autor.getId() + " - " + autor.getNombre() + " - " + autor.isAlta());
             
+            }
             }
     } catch(Exception e){
         throw e;
@@ -59,5 +63,6 @@ public class AutorDAO extends DAO{
             //desconectar();
         }
     }
-    
+
+  
 }

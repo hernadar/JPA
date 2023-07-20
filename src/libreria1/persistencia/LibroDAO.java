@@ -48,9 +48,13 @@ public class LibroDAO extends DAO{
             conectar();
             List<Libro> libros = em.createQuery("SELECT a FROM Libro a WHERE a.titulo LIKE :titulo").setParameter("titulo", titulo).getResultList() ;
             System.out.println("Lista de Libros");
+            if (libros.isEmpty()){
+                System.out.println("El libro buscado no existe");
+            } else {
             for (Libro libro : libros) {
                 System.out.println(libro.getIsbn() + " - " + libro.getTitulo() + " - " + libro.isAlta());
             
+            }
             }
     } catch(Exception e){
         throw e;
@@ -61,11 +65,15 @@ public class LibroDAO extends DAO{
     public void buscarLibrosPorNombreAutor(String nombre){
         try {
             conectar();
-            List<Libro> libros = em.createQuery("SELECT a FROM Libro a JOIN Autor WHERE a.autor.nombre LIKE :nombre").setParameter("nombre", nombre).getResultList() ;
+            List<Libro> libros = em.createQuery("SELECT a FROM Libro a WHERE a.autor.nombre LIKE : dario").getResultList() ;
             System.out.println("Lista de Libros");
+            if (libros.isEmpty()){
+                System.out.println("Los libros buscados no existen");
+            } else {
             for (Libro libro : libros) {
                 System.out.println(libro.getIsbn() + " - " + libro.getTitulo() + " - " + libro.isAlta());
             
+            }
             }
     } catch(Exception e){
         throw e;
@@ -78,9 +86,13 @@ public class LibroDAO extends DAO{
             conectar();
             List<Libro> libros = em.createQuery("SELECT a FROM Libro a JOIN Editorial WHERE a.autor.nombre LIKE :nombre").setParameter("nombre", nombre).getResultList() ;
             System.out.println("Lista de Libros");
+            if (libros.isEmpty()){
+                System.out.println("Los libros buscados no existen");
+            } else{
             for (Libro libro : libros) {
                 System.out.println(libro.getIsbn() + " - " + libro.getTitulo() + " - " + libro.isAlta());
             
+            } 
             }
     } catch(Exception e){
         throw e;

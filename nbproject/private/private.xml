@@ -3,13 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/E:/Dario/Documents/NetBeansProjects/libreria1/src/libreria1/persistencia/EditorialDAO.java</file>
+            <file>file:/E:/Dario/Documents/NetBeansProjects/libreria1/src/libreria1/persistencia/LibroDAO.java</file>
             <file>file:/E:/Dario/Documents/NetBeansProjects/libreria1/src/libreria1/Libreria1.java</file>
-            <file>file:/E:/Dario/Documents/NetBeansProjects/libreria1/src/libreria1/servicios/LibroServicio.java</file>
             <file>file:/E:/Dario/Documents/NetBeansProjects/libreria1/src/META-INF/persistence.xml</file>
-            <file>file:/E:/Dario/Documents/NetBeansProjects/libreria1/src/libreria1/servicios/MenuServicio.java</file>
-            <file>file:/E:/Dario/Documents/NetBeansProjects/libreria1/src/libreria1/entidades/Libro.java</file>
+            <file>file:/E:/Dario/Documents/NetBeansProjects/libreria1/src/libreria1/entidades/Autor.java</file>
             <file>file:/E:/Dario/Documents/NetBeansProjects/libreria1/src/libreria1/servicios/AutorServicio.java</file>
+            <file>file:/E:/Dario/Documents/NetBeansProjects/libreria1/src/libreria1/servicios/LibroServicio.java</file>
+            <file>file:/E:/Dario/Documents/NetBeansProjects/libreria1/src/libreria1/entidades/Editorial.java</file>
+            <file>file:/E:/Dario/Documents/NetBeansProjects/libreria1/src/libreria1/servicios/MenuServicio.java</file>
+            <file>file:/E:/Dario/Documents/NetBeansProjects/libreria1/src/libreria1/persistencia/AutorDAO.java</file>
+            <file>file:/E:/Dario/Documents/NetBeansProjects/libreria1/src/libreria1/entidades/Libro.java</file>
             <file>file:/E:/Dario/Documents/NetBeansProjects/libreria1/src/libreria1/servicios/EditorialServicio.java</file>
+            <file>file:/E:/Dario/Documents/NetBeansProjects/libreria1/src/libreria1/persistencia/DAO.java</file>
         </group>
     </open-files>
 </project-private>
