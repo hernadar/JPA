@@ -25,7 +25,7 @@ public class LibroDAO extends DAO{
     public Libro buscarLibro(long id){
         System.out.println(id);
         Libro libro = em.find(Libro.class, id);
-        System.out.println(libro);
+        System.out.println(libro.getIsbn() + " - " + libro.getTitulo() + " - " + libro.isAlta() + " - " + libro.getAutor().getNombre() + " - " + libro.getEditorial().getNombre());
     return libro;
     }
     public void listarLibros(){
@@ -34,7 +34,7 @@ public class LibroDAO extends DAO{
             List<Libro> libros = em.createQuery("SELECT a FROM Libro a").getResultList();
             System.out.println("Lista de Libros");
             for (Libro libro : libros) {
-                System.out.println(libro.getIsbn() + " - " + libro.getTitulo() + " - " + libro.isAlta());
+                System.out.println(libro.getIsbn() + " - " + libro.getTitulo() + " - " + libro.isAlta() + " - " + libro.getAutor().getNombre() + " - " + libro.getEditorial().getNombre());
             
             }
     } catch(Exception e){
@@ -52,7 +52,7 @@ public class LibroDAO extends DAO{
                 System.out.println("El libro buscado no existe");
             } else {
             for (Libro libro : libros) {
-                System.out.println(libro.getIsbn() + " - " + libro.getTitulo() + " - " + libro.isAlta());
+                System.out.println(libro.getIsbn() + " - " + libro.getTitulo() + " - " + libro.isAlta()+ " - " + libro.getAutor().getNombre() + " - " + libro.getEditorial().getNombre());
             
             }
             }
@@ -65,13 +65,13 @@ public class LibroDAO extends DAO{
     public void buscarLibrosPorNombreAutor(String nombre){
         try {
             conectar();
-            List<Libro> libros = em.createQuery("SELECT a FROM Libro a WHERE a.autor.nombre LIKE : dario").getResultList() ;
+            List<Libro> libros = em.createQuery("SELECT a FROM Libro a WHERE a.autor.nombre LIKE :nombre").setParameter("nombre", nombre).getResultList() ;
             System.out.println("Lista de Libros");
             if (libros.isEmpty()){
                 System.out.println("Los libros buscados no existen");
             } else {
             for (Libro libro : libros) {
-                System.out.println(libro.getIsbn() + " - " + libro.getTitulo() + " - " + libro.isAlta());
+                System.out.println(libro.getIsbn() + " - " + libro.getTitulo() + " - " + libro.isAlta()+ " - " + libro.getAutor().getNombre() + " - " + libro.getEditorial().getNombre());
             
             }
             }
@@ -84,13 +84,13 @@ public class LibroDAO extends DAO{
      public void buscarLibrosPorNombreEditorial(String nombre){
         try {
             conectar();
-            List<Libro> libros = em.createQuery("SELECT a FROM Libro a JOIN Editorial WHERE a.autor.nombre LIKE :nombre").setParameter("nombre", nombre).getResultList() ;
+            List<Libro> libros = em.createQuery("SELECT a FROM Libro a WHERE a.editorial.nombre LIKE :nombre").setParameter("nombre", nombre).getResultList() ;
             System.out.println("Lista de Libros");
             if (libros.isEmpty()){
                 System.out.println("Los libros buscados no existen");
             } else{
             for (Libro libro : libros) {
-                System.out.println(libro.getIsbn() + " - " + libro.getTitulo() + " - " + libro.isAlta());
+                System.out.println(libro.getIsbn() + " - " + libro.getTitulo() + " - " + libro.isAlta()+ " - " + libro.getAutor().getNombre() + " - " + libro.getEditorial().getNombre());
             
             } 
             }
