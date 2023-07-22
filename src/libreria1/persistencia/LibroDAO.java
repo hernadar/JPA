@@ -5,7 +5,9 @@
  */
 package libreria1.persistencia;
 
+import java.util.Iterator;
 import java.util.List;
+import libreria1.entidades.Autor;
 import libreria1.entidades.Libro;
 
 /**
@@ -25,7 +27,11 @@ public class LibroDAO extends DAO{
     public Libro buscarLibro(long id){
         System.out.println(id);
         Libro libro = em.find(Libro.class, id);
+        if (libro == null ){
+            System.out.println("El libro no existe");
+        } else {
         System.out.println(libro.getIsbn() + " - " + libro.getTitulo() + " - " + libro.isAlta() + " - " + libro.getAutor().getNombre() + " - " + libro.getEditorial().getNombre());
+        }
     return libro;
     }
     public void listarLibros(){
@@ -47,6 +53,13 @@ public class LibroDAO extends DAO{
         try {
             conectar();
             List<Libro> libros = em.createQuery("SELECT a FROM Libro a WHERE a.titulo LIKE :titulo").setParameter("titulo", titulo).getResultList() ;
+            Iterator<Libro> it = libros.iterator();
+            while (it.hasNext()) {
+                Libro libro = it.next();
+                if (!libro.isAlta()) {
+                    it.remove();
+                }
+             }
             System.out.println("Lista de Libros");
             if (libros.isEmpty()){
                 System.out.println("El libro buscado no existe");

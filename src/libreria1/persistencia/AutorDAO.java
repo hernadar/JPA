@@ -5,6 +5,7 @@
  */
 package libreria1.persistencia;
 
+import java.util.Iterator;
 import java.util.List;
 import libreria1.entidades.Autor;
 
@@ -35,7 +36,7 @@ public class AutorDAO extends DAO{
             List<Autor> autores = em.createQuery("SELECT a FROM Autor a").getResultList();
             System.out.println("Lista de Autores");
             for (Autor autor : autores) {
-                System.out.println(autor.getId() + " - " + autor.getNombre() + " - " + autor.isAlta());
+                System.out.println(autor.getId() + " - " + autor.getNombre()+ " - " + autor.isAlta());
             
             }
     } catch(Exception e){
@@ -47,13 +48,20 @@ public class AutorDAO extends DAO{
     public void buscarAutorPorNombre(String nombre){
         try {
             conectar();
-            List<Autor> autores = em.createQuery("SELECT a FROM Autor a WHERE a.nombre LIKE :nombre").setParameter("nombre", nombre).getResultList() ;
+            List<Autor> autores = em.createQuery("SELECT a FROM Autor a WHERE a.nombre LIKE :nombre").setParameter("nombre", nombre).getResultList();
+            Iterator<Autor> it = autores.iterator();
+            while (it.hasNext()) {
+                Autor autor = it.next();
+                if (!autor.isAlta()) {
+                    it.remove();
+                }
+             }
             System.out.println("Lista de Autores");
             if (autores.isEmpty()) {
                 System.out.println("El Autor buscado no existe");
             } else{
             for (Autor autor : autores) {
-                System.out.println(autor.getId() + " - " + autor.getNombre() + " - " + autor.isAlta());
+                System.out.println(autor.getId() + " - " + autor.getNombre());
             
             }
             }

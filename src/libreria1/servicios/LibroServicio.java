@@ -57,8 +57,17 @@ public class LibroServicio {
     try {
         
         Libro libro = new Libro();
+        long ISBN;
+        do{
         System.out.println("Ingrese el ISBN del Libro");
-        libro.setIsbn(leer.nextLong());
+        ISBN = leer.nextLong();
+        libro = ldao.buscarLibro(ISBN);
+        if (libro != null){
+            System.out.println("El ISBN ingresado ya existe");
+        }
+        } while (libro != null);
+        libro = new Libro();
+        libro.setIsbn(ISBN);
         System.out.println("Ingrese el Titulo del Libro");
         libro.setTitulo(leer.next());
         System.out.println("Ingrese el año del Libro");
