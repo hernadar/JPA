@@ -35,9 +35,14 @@ public class PrestamoServicio {
         DateFormat formateador= new SimpleDateFormat("dd/M/yy");
         System.out.println("Ingrese la fecha del Prestamo (dd/mm/yyyy)");
         Date fecha= formateador.parse(leer.next());
-        Date fechaActual = new Date();
-        
-        if (fecha.before(fechaActual)){
+        Calendar fechaActual = Calendar.getInstance();
+        fechaActual.add(Calendar.DATE, -1);
+        fechaActual.set(Calendar.HOUR_OF_DAY, 23);
+        fechaActual.set(Calendar.MINUTE, 59);
+        fechaActual.set(Calendar.SECOND, 59);
+        System.out.println(fechaActual.getTime());
+        System.out.println(fecha);
+        if (fecha.before(fechaActual.getTime())){
             System.out.println("Te compraste el De Lorian, Martin Mc Fly?");
         } else {
             prestamo.setFechaPrestamo(fecha);
@@ -63,7 +68,7 @@ public class PrestamoServicio {
         
         pdao.listarPrestamos();
         System.out.println("Ingrese el Id de prestamo a devolver");
-        pdao.buscarPrestamo(leer.nextInt());
+        prestamo = pdao.buscarPrestamo(leer.nextInt());
         System.out.println("Ingrese la fecha de Devolución (dd/mm/yyyy)");
         Date fechaDevolucion= formateador.parse(leer.next());
         // creamos un calendario
@@ -118,11 +123,18 @@ public class PrestamoServicio {
         pdao.eliminarPrestamo(prestamo);
     }
     public void buscarPrestamoPorNombre(){
+        cdao.listarClientes();
         System.out.println("Ingrese el documento del cliente a buscar");
         long documento = leer.nextLong();
         pdao.buscarPrestamoPorCliente(documento);
         
     }      
+
+    void buscarPrestamo() {
+        pdao.listarPrestamos();
+    }
+
+  
     
     
     

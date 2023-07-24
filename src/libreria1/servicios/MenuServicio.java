@@ -33,8 +33,10 @@ public class MenuServicio {
         System.out.println("9- Búsqueda de un libro/s por nombre de Editorial.");
         System.out.println("10- Crear Prestamo");
         System.out.println("11- Crear Devolución");
+        System.out.println("12- Listar todos los préstamos.");
+        System.out.println("13- Búsqueda de todos los préstamos de un Cliente.");
         
-        System.out.println("12- Salir");
+        System.out.println("14- Salir");
         r=leer.nextInt();
         switch (r){
             case 1:
@@ -70,12 +72,18 @@ public class MenuServicio {
                 break;
             case 11:
                 ps.crearDevolucion();
+                break;
+            case 12:
+                ps.buscarPrestamo();
+                break; 
+            case 13:
+                ps.buscarPrestamoPorNombre();
                 break; 
         }
                 
         
         
         
-        } while (r !=12);    
+        } while (r !=14);    
 }
 }
